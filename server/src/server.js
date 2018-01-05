@@ -28,7 +28,17 @@ const serverFactory = (port, staticDir) => {
     // Additional RESPONSE headers to allow for CORS.
     server.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
+
+        // Intercept Pre-Flight OPTIONS request.
+        if (req.method == 'OPTIONS') {
+            return res
+                .status(200)
+                .send();
+        }
+
+        next();
     });
 
     server.all('*', routes);
