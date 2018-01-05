@@ -14,7 +14,6 @@ const serverFactory = (port, staticDir) => {
     server.use(bodyParser.json());
     server.use((err, req, res, next) => {
         if (err instanceof SyntaxError) {
-            console.log(req.body);
             return res
                 .status(400)
                 .json({
@@ -28,7 +27,7 @@ const serverFactory = (port, staticDir) => {
     // Additional RESPONSE headers to allow for CORS.
     server.use((req, res, next) => {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, PATCH, DELETE, OPTIONS');
         res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
 
         // Intercept Pre-Flight OPTIONS request.
