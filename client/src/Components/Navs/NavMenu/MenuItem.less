@@ -1,0 +1,58 @@
+@import (once) '../../../Assets/less/flex.less';
+
+.MenuItem {
+
+    .display-flex();
+    .justify-content(center);
+    .align-items(center);
+    
+    padding: 0 1em;
+
+    height: 100%;
+
+    color: rgb(27, 28, 29);
+    border-bottom: 2px solid transparent;
+
+    & > i {
+        font-size: 2em;
+    }
+
+    & > header {
+        margin: 0 0.5em;
+
+        font-size: 1.25em;
+        font-weight: 400;
+    }
+
+    &.active {
+        border-bottom: 2px solid;
+
+        &.black {
+            border-color: black;
+            color: black;
+        }
+
+        &.blue {
+            border-color: blue;
+            color: blue;
+        }
+
+        &.brown {
+            border-color: chocolate;
+            color: chocolate;
+        }
+
+        &.red {
+            border-color: red;
+            color: chocolate;
+        }
+
+        span {
+            font-weight: 600;
+        }
+    }
+
+    &:hover:not(.active) {
+        color: rgb(0, 180, 180);
+    }
+}

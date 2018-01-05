@@ -1,0 +1,134 @@
+@import (once) '../../../Assets/less/flex.less';
+@import (once) '../../../Assets/less/transition.less';
+
+.NavMenu {
+    .display-flex();
+
+    z-index: 99;
+
+    height: 60px;
+    width: 100%;
+    
+    position: relative;
+
+    & > nav {
+        .display-flex();
+        .align-items(center);
+
+        position: fixed;
+
+        height: inherit;
+        width: inherit;
+
+        background: rgba(255, 255, 255, 0.9);
+
+        .logo {
+            .display-flex();
+            .justify-content(center);
+            .align-items(center);
+        }
+    }
+
+    .navBuffer {
+        margin: 0;
+        padding: 0;
+    
+        height: inherit;
+        width: inherit;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .NavMenu {
+        & > nav {
+            .justify-content(space-between);
+
+            padding: 0 5px;
+
+            .hamburger {
+                margin: 0;
+                padding: 2px;
+
+                background: white;
+                border: solid 1px rgba(0, 0, 0, 0.1);
+                border-radius: 5px;
+
+                .transition(~'border 0.3s, background 0.3s');
+
+                & > i {
+                    margin: 0 5px;
+                    color: rgba(0, 0, 0, 0.5);
+
+                    .transition(~'color 0.3s');
+                }
+
+                &.active {
+                    background: rgba(0, 0, 0, 0.5);
+                    border: solid 1px rgba(0, 0, 0, 0.1);
+                    
+                    & > i {
+                        color: white;    
+                    }
+                }
+            }
+
+            .menuList {
+                .display-flex();
+                .flex-direction(column);
+                .justify-content(center);
+                .align-items(center);
+
+                display: block;
+                visibility: hidden;
+                position: absolute;
+                z-index: 99;
+                
+                top: 60px;
+
+                background: white;
+                opacity: 0;
+
+                .transition(~'visibility 0.3s, opacity 0.3s');
+
+                & > * {
+                    border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+                }
+
+                &.active {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .NavMenu {
+        & > nav {
+            .justify-content(flex-start);
+            
+            padding: 0 10%;
+
+            .hamburger {
+                display: none;
+            }
+
+            .menuList {
+                .flex(1);
+
+                .display-flex();
+                .justify-content(flex-end);
+                .align-items(center);
+
+                top: 60px;
+
+                height: 100%;
+
+                & > * {
+                    margin: 0 0.5em;
+                }
+            }
+        }
+    }
+}

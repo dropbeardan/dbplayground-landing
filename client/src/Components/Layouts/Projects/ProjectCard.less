@@ -1,0 +1,45 @@
+@import (once) '../../../Assets/less/flex.less';
+
+.ProjectCard {
+    height: 350px;
+    width: 250px;
+
+    header {
+        text-align: center;
+    }
+
+    .content {
+        .display-flex();
+        .flex-direction(column);
+
+        height: 100%;
+        width: 100%;
+
+        & > * {
+            margin: 5px 0;
+
+            font-size: 0.85em;
+        }
+    }
+
+    .iconStrip {
+        .display-flex();
+        .justify-content(flex-start);
+        .align-items(center);
+
+        padding: 5px;
+
+        height: 100%;
+        width: 100%;
+
+        overflow: hidden;
+        
+        & > img {
+            margin: 0 10px;
+
+            object-fit: contain;
+            height: 100%;
+            max-width: 50px;
+        }
+    }
+}

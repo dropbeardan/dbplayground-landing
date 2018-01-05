@@ -1,0 +1,24 @@
+@import (once) '../../../Assets/less/flex.less';
+
+.TechIcon {
+    img {
+        object-fit: contain;
+        height: 50px;
+    }
+
+    header {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width: 699px) {
+    .TechIcon img {
+        max-width: 50px;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .TechIcon img {
+        max-width: 100px;
+    }
+}

@@ -1,0 +1,182 @@
+@import (once) '../../../Assets/less/flex.less';
+
+.ProfileRecord {
+    .display-flex();
+    .flex-direction(column);
+    .justify-content(space-between);
+    .align-items(center);
+
+    overflow-x: hidden;
+
+    .title {
+        .display-flex();
+        .flex-direction(column);
+        .justify-content(center);
+        .align-items(center);
+
+        padding: 2em 10%;
+
+        width: 100%;
+
+        background: rgb(118, 50, 63);
+    
+        header {
+            margin-bottom: 0.5em;
+
+            text-align: center;
+
+            color: white;
+            font-size: 3em;
+            font-weight: 600;
+        }
+    
+        main {
+            .display-flex();
+            .flex-direction(column);
+            .justify-content(center);
+            .align-items(center);
+
+            text-align: center;
+
+            color: white;
+            font-size: 2em;
+
+            & > *:first-child {
+                font-style: italic;
+            }
+        }
+    }
+
+    .info {
+        .display-flex();
+        .justify-content(center);
+        .flex-wrap(wrap);
+        
+        padding: 1em 10%;
+
+        width: 100%;
+
+        & > * {
+            padding: 0 2em;
+        }
+
+        & > *:not(:first-child) {
+            .flex(1);
+
+            .display-flex();
+            .flex-direction(column);
+
+            section {
+                .display-flex();
+                .flex-direction(column);
+            }
+
+            header {
+                margin-bottom: 0.5em;
+
+                color: rgb(30, 57, 42);
+                font-size: 2em;
+                font-weight: 600;
+            }
+
+            main {
+                margin-bottom: 3em;
+
+                font-size: 1.5em;
+
+                .heading {
+                    font-weight: 600;
+                }
+
+                .value {
+                    margin-bottom: 1em;
+                }
+            }
+
+            .mapWrapper {
+                width: 100%;
+                height: 300px;
+            }
+        }
+    }
+
+    .proficiencies {
+        .display-flex();
+        .justify-content(center);
+        .align-items(center);
+        .flex-wrap(wrap);
+        
+        padding: 3em 10%;
+
+        width: 100%;
+
+        background: rgb(0, 153, 255);
+
+        & > header {
+            .display-flex();
+            .justify-content(center);
+            .align-items(center);
+
+            height: 100%;
+
+            text-align: center;
+
+            color: white;
+            font-size: 3em;
+            font-weight: 600;
+        }
+
+        & > main {
+            .flex(1);
+
+            .display-flex();
+            .justify-content(center);
+            .align-items(center);
+            .flex-wrap(wrap);
+
+            min-width: 50%;
+
+            & > * {
+                margin: 2em;
+            }
+        }
+    }
+
+    .projectList {
+        .display-flex();
+        .flex-direction(column);
+        .justify-content(center);
+        .align-items(center);
+
+        padding: 2em 10%;
+
+        width: 100%;
+
+        & > * {
+            margin: 2em;
+        }
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .ProfileRecord {
+        .info {
+            .flex-direction(column);
+            .justify-content(center);
+            .align-items(center);
+
+            & > *:not(:first-child) {
+
+                width: 100%;
+
+                header, main {
+                    text-align: center;
+                }
+            }
+        }
+       
+        .proficiencies {
+            .flex-direction(column);
+        }
+    }
+}

@@ -1,0 +1,377 @@
+@import (once) '../../../Assets/less/flex.less';
+@import (once) '../../../Assets/less/transition.less';
+@import (once) '../../../Assets/less/animation.less';
+
+.keyframes(paint-flash, {
+    0% {opacity: 0.25;}
+    5% {opacity: 0.25;}
+    40% {opacity: 1;}
+    60% {opacity: 1;}
+    5% {opacity: 0.25;}
+    100% {opacity: 0.25;}
+});
+
+.Home {
+    .display-flex();
+    .flex-direction(column);
+    .justify-content(space-between);
+
+    height: 100vh;
+    width: 100vw;
+
+    overflow: hidden;
+
+    background-color: black;
+    background: linear-gradient(135deg, rgb(0, 0, 0), rgb(40, 40, 40));
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    & > * {
+        .display-flex();
+        
+        width: 100%;
+    }
+
+    .primary {
+        position: relative;
+
+        overflow-x: hidden;
+
+        & > * {
+            position: absolute;
+
+            height: 100%;
+            width: 100%;
+
+            .transition(~'left 1.5s, opacity 0.75s ease-in');
+        }
+    }
+
+    .secondary {
+        .flex(1);
+    }
+
+    .landing {
+        .display-flex();
+        .flex-direction(column);
+        .justify-content(center);
+        .align-items(center);
+
+        padding: 2em;
+
+        left: 0;
+        opacity: 1;
+
+        &.entered {
+            left: -100%;
+            opacity: 0;
+        }
+    
+        header {
+            margin-bottom: 1em;
+    
+            width: 100%;
+
+            text-align: center;
+            line-height: 1.25;
+
+            color: white;
+            font-weight: 600;
+        }
+    
+        main {
+            .animation(paint-flash 1.5s linear 0s infinite normal);
+
+            text-align: center;
+            line-height: 1.5;
+
+            color: rgb(255, 233, 240);
+        }
+    }
+
+    .navPanel {
+        .display-flex();
+        .justify-content(center);
+        .align-items(center);
+        .flex-wrap(wrap);
+    
+        left: 100%;
+        opacity: 0;
+
+        min-height: 60%;
+
+        &.entered {
+            left: 0;
+            opacity: 1;
+        }
+    }
+
+    .techPanel {
+        .display-flex();
+        .flex-direction(column);
+        .justify-content(center);
+        .align-items(center);
+
+        display: block;        
+    
+        header {
+            margin-top: 1em;
+            
+            text-align: center;
+            line-height: 1.5;
+
+            color: white;
+            font-weight: 600;
+        }
+    
+        main {
+            .display-flex();
+            .justify-content(center);
+            .align-items(center);
+            .flex-wrap(wrap);
+
+            width: 100%;
+        }
+    }
+
+    .mascot {
+        .display-flex();
+        .justify-content(center);
+        .align-items(center);
+
+        max-width: 100%;
+
+        img {
+            object-fit: contain;
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 699px) {
+    .Home {
+        .primary {
+            min-height: 60%;
+
+            overflow: hidden;
+
+            &.entered {
+                overflow-y: auto;
+
+                min-height: 100%;
+            }
+        }
+
+        .secondary {
+            .flex-direction(column);
+            .align-items(space-between);
+            .justify-content(space-between);
+
+            &.entered {
+                display: none;
+            }
+        }
+
+        .landing {
+            header {
+                font-size: 3em;
+            }
+
+            main {
+                font-size: 1.5em;
+            }
+        }
+
+        .navPanel {
+            & > * {
+                margin: 1em;
+            }
+        }
+
+        .techPanel {
+            header {
+                font-size: 1.5em;
+            }
+
+            main {
+                & > * {
+                    margin: 1em;
+                }
+            }
+        }
+
+        .mascot {
+            height: 50%;
+        }
+    }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 999px) {
+    .Home {
+        .primary {
+            min-height: 50%;
+
+            overflow: hidden;
+
+            &.entered {
+                overflow-y: auto;
+
+                min-height: 100%;
+            }
+        }
+
+        .secondary {
+            .flex-direction(column);
+            .align-items(space-between);
+            .justify-content(space-between);
+
+            &.entered {
+                display: none;
+            }
+        }
+
+        .landing {
+            header {
+                font-size: 4em;
+            }
+
+            main {
+                font-size: 2em;
+            }
+        }
+
+        .navPanel {
+            & > * {
+                margin: 1em;
+            }
+        }
+        
+        .techPanel {
+            
+            header {
+                font-size: 2em;
+            }
+
+            main {
+                & > * {
+                    margin: 1.5em;
+                }
+            }
+        }
+
+        .mascot {
+            .flex(1);
+        }
+    }
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1449px) {
+    .Home {
+        .primary {
+            min-height: 60%;
+
+            overflow: hidden;
+
+            &.entered {
+                overflow-y: auto;
+
+                min-height: 100%;
+            }
+        }
+
+        .secondary {
+            .align-items(center);
+            .justify-content(center);
+
+            &.entered {
+                display: none;
+            }
+        }
+
+        .landing {
+            header {
+                font-size: 5em;
+            }
+
+            main {
+                font-size: 2.5em;
+            }
+        }
+
+        .navPanel {
+            & > * {
+                margin: 1em;
+            }
+        }
+
+        .techPanel {
+            .flex(1);
+
+            header {
+                font-size: 2.5em;
+            }
+            
+            main {
+                & > * {
+                    margin: 1.5em;
+                }
+            }
+        }
+
+        .mascot {
+            height: 100%;
+        }
+    }
+}
+
+@media only screen and (min-width: 1450px) {
+    .Home {
+        .primary {
+            min-height: 60%;
+
+            overflow: hidden;
+        }
+
+        .secondary {
+            .align-items(center);
+            .justify-content(center);
+        }
+
+        .navPanel {
+            & > * {
+                margin: 2em;
+            }
+        }
+
+        .landing {
+            header {
+                font-size: 5em;
+            }
+
+            main {
+                font-size: 2.5em;
+            }
+        }
+
+        .techPanel {
+            .flex(1);
+
+            header {
+                font-size: 2.5em;
+            }
+            
+            main {
+                & > * {
+                    margin: 1.5em;
+                }
+            }
+        }
+
+        .mascot {
+            height: 100%;
+        }
+    }
+}
