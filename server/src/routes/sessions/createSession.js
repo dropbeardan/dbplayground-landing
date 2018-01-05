@@ -14,7 +14,7 @@ const requiredFields = [
 const createSession = async (req, res) => {
 
     let session = await database.Sessions.create(
-        req.ip.replace('::ffff:', ''),
+        req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'] : req.connection.remoteAddress,
         req.body.latitude,
         req.body.longitude,
         req.body.deviceHeight,
