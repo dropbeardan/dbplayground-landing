@@ -3,13 +3,13 @@ const moment = require('moment');
 const models = require('../models');
 const sequelize = models.sequelize;
 
-const create = async (sessionId, path) => {
+const create = async (sessionId, path, active = true, start = moment(), end = moment()) => {
     let journey = await models.Journey.create({
         SessionId: sessionId,
-        active: true,
+        active: active,
         path: path,
-        start: moment(),
-        end: moment()
+        start: start,
+        end: end
     });
 
     return journey;

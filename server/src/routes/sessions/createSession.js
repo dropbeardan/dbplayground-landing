@@ -3,8 +3,6 @@ const database = require('../../database');
 const routeWrapper = require('../../helpers/routeWrapper');
 
 const requiredFields = [
-    'latitude',
-    'longitude',
     'deviceHeight',
     'deviceWidth',
     'screenHeight',
@@ -15,8 +13,6 @@ const createSession = async (req, res) => {
 
     let session = await database.Sessions.create(
         req.headers['x-forwarded-for'] ? req.headers['x-forwarded-for'] : req.connection.remoteAddress,
-        req.body.latitude,
-        req.body.longitude,
         req.body.deviceHeight,
         req.body.deviceWidth,
         req.body.screenHeight,

@@ -40,7 +40,6 @@ export default class StatLoader extends React.Component {
 
             return this.props.dispatch(StatActions.set('locations', coordLocations));
         } catch (err) {
-            console.log(err);
             return;
         }
     };

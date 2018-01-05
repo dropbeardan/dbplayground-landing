@@ -1,13 +1,9 @@
 const models = require('../models');
 const sequelize = models.sequelize;
 
-const create = async (ipAddress, latitude, longitude, deviceHeight, deviceWidth, screenHeight, screenWidth) => {
+const create = async (ipAddress, deviceHeight, deviceWidth, screenHeight, screenWidth) => {
     let session = await models.Session.create({
         ipAddress: ipAddress,
-        location: JSON.stringify({
-            lat: latitude,
-            lng: longitude
-        }),
         deviceHeight: deviceHeight,
         deviceWidth: deviceWidth,
         screenHeight: screenHeight,
@@ -71,11 +67,30 @@ const getVisitors = async () => {
     return visitors;
 };
 
+const update = async (sessionId, updateParams) => {
+    let [affectedRows, sessions] = await models.Session.update(
+        updateParams,
+        {
+            returning: true,
+            where: {
+                id: sessionId
+            }
+        }
+    );
+
+    if (affectedRows == 0) {
+        return null;
+    }
+
+    return sessions[0];
+};
+
 module.exports = {
     create,
     get,
     getDeviceResolutions,
     getLocations,
     getScreenResolutions,
-    getVisitors
+    getVisitors,
+    update
 };

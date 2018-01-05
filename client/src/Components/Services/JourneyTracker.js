@@ -3,6 +3,8 @@ import moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { SessionActions } from '../../Actions';
+
 @connect((store) => {
     return {
         session: store.session
@@ -25,6 +27,13 @@ export default class JourneyTracker extends React.Component {
         if (this.props.session.id) {
             return this.startJourney(this.props.session.id, location.pathname);
         }
+
+        return this.props.dispatch(SessionActions.addJourney({
+            active: false,
+            path: location.pathname,
+            startTime: moment(),
+            endTime: moment()
+        }));
     };
 
     componentWillUnmount() {

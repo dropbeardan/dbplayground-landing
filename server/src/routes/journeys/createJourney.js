@@ -29,10 +29,19 @@ const createJourney = async (req, res) => {
             });
     }
 
-    let journey = await database.Journeys.create(
-        req.body.sessionId,
-        req.body.path
-    );
+    let params = req.body.active === undefined || req.body.startTime === undefined || req.body.endTime === undefined ?
+        [
+            req.body.sessionId,
+            req.body.path
+        ] : [
+            req.body.sessionId,
+            req.body.path,
+            req.body.active,
+            req.body.startTime,
+            req.body.endTime
+        ];
+
+    let journey = await database.Journeys.create(...params);
 
     return res
         .status(200)

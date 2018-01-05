@@ -6,30 +6,50 @@ import { connect } from 'react-redux';
 import { SessionActions } from '../../Actions';
 
 @connect((store) => {
-    return {};
+    return {
+        session: store.session
+    };
 })
 export default class SessionTracker extends React.Component {
 
     constructor(props) {
         super(props);
 
+        this.journeyListener = this.journeyListener;
+        this.locationListener = this.locationListener;
+
         this.getSession = this.getSession.bind(this);
-        this.getUserLocation = this.getUserLocation.bind(this);
+        this.removeListeners = this.removeListeners.bind(this);
+        this.sendJourneys = this.sendJourneys.bind(this);
+        this.sendUserLocation = this.sendUserLocation.bind(this);
         this.updateSession = this.updateSession.bind(this);
+        this.updateUserLocation = this.updateUserLocation.bind(this);
     };
 
     componentWillMount() {
-        return this.updateSession();
+        this.updateUserLocation();
+        this.updateSession();
+    };
+
+    componentDidMount() {
+        this.journeyListener = setTimeout(this.sendJourneys, 10000);
+        this.locationListener = setTimeout(this.sendUserLocation, 10000);
+
+        window.addEventListener('beforeunload', this.removeListeners);
     }
 
-    async getSession(position) {
+    componentWillUnmount() {
+        this.removeListeners();
+
+        window.removeEventListener('beforeunload', this.removeListeners);
+    }
+
+    async getSession() {
         try {
             let response = await axios({
                 url: `${buildEnv.baseURL}/sessions`,
                 method: 'POST',
                 data: {
-                    latitude: position.latitude ? Math.round(position.latitude * Math.pow(10, 7)) : null,
-                    longitude: position.longitude ? Math.round(position.longitude * Math.pow(10, 7)) : null,
                     deviceHeight: screen.height,
                     deviceWidth: screen.width,
                     screenHeight: window.innerHeight,
@@ -41,28 +61,39 @@ export default class SessionTracker extends React.Component {
         } catch (err) {
             return null;
         }
-    }
+    };
 
-    async getUserLocation() {
-        return new Promise((resolve, reject) => {
-            return navigator.geolocation.getCurrentPosition(
-                (location) => { resolve(location.coords); },
-                (error) => { resolve({}); },
-                {
-                    enableHighAccuracy: true,
-                    timeout: 15000,
-                    maximumAge: 30000
-                }
-            );
-        });
-    }
+    removeListeners() {
+        clearTimeout(this.journeyListener);
+        clearTimeout(this.locationListener);
+
+        this.journeyListener = null;
+        this.locationListener = null;
+    };
+
+    sendJourneys() {
+        if (this.props.session.id && this.props.session.journeys.length > 0) {
+            this.props.dispatch(SessionActions.sendJourneys(
+                this.props.session.id,
+                this.props.session.journeys
+            ));
+        }
+    };
+
+    sendUserLocation() {
+        if (this.props.session.id && this.props.session.userLocation) {
+            this.props.dispatch(SessionActions.sendUserLocations(
+                this.props.session.id,
+                this.props.session.userLocation.latitude,
+                this.props.session.userLocation.longitude
+            ));
+        }
+    };
 
     async updateSession() {
-        let userLocation = await this.getUserLocation();
-
         // HTML localstorage not enabled.
         if (!Storage) {
-            let sessionId = await this.getSession(userLocation);
+            let sessionId = await this.getSession();
 
             return this.props.dispatch(SessionActions.set(sessionId));
         }
@@ -76,7 +107,7 @@ export default class SessionTracker extends React.Component {
             !JSON.parse(sessionCache).created ||
             moment(JSON.parse(sessionCache).created).isBefore(moment().subtract(30, 'minutes'))
         ) {
-            let sessionId = await this.getSession(userLocation);
+            let sessionId = await this.getSession();
 
             localStorage.setItem('dbplayground', JSON.stringify({
                 id: sessionId,
@@ -93,7 +124,28 @@ export default class SessionTracker extends React.Component {
         }));
 
         return this.props.dispatch(SessionActions.set(JSON.parse(sessionCache).id));
-    }
+    };
+
+    async updateUserLocation() {
+        let userLocation = await new Promise((resolve, reject) => {
+            return navigator.geolocation.getCurrentPosition(
+                (location) => { resolve(location.coords); },
+                (error) => { resolve(null); },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000,
+                    maximumAge: 30000
+                }
+            );
+        });
+
+        if (userLocation) {
+            this.props.dispatch(SessionActions.addUserLocation(
+                Math.round(userLocation.latitude * Math.pow(10, 7)),
+                Math.round(userLocation.longitude * Math.pow(10, 7))
+            ));
+        }
+    };
 
     render() {
         return (
