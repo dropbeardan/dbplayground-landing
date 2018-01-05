@@ -3,7 +3,7 @@
 A cloud repository created by dropbeardan to showcase the works of the Drop Bear Army.
 
 ## Site
-Visit us at https://www.dropbearplayground.com.
+Visit us at https://www.dbplayground.com.
 
 ## Setting Up Project Locally
 1. Firstly, clone this repository.
