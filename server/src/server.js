@@ -25,6 +25,12 @@ const serverFactory = (port, staticDir) => {
         return next();
     });
 
+    // Additional RESPONSE headers to allow for CORS.
+    server.use((req, res, next) => {
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    });
+
     server.all('*', routes);
 
     server.listen(port, () => {
