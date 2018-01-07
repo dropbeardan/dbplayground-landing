@@ -1,13 +1,14 @@
-const express = require('express');
 const bodyParser = require('body-parser');
-const path = require('path');
+const express = require('express');
+const http = require('http');
+const https = require('https');
 
 const translateSubdomain = require('./routes/middlewares/translateSubdomain');
 const routes = require('./routes');
 
-const serverFactory = (port, staticDir) => {
+const serverFactory = (httpPort, httpsPort, httpsOptions, staticDir) => {
 
-    let server = express();
+    const server = express();
 
     // Cache and load statics directory.
     server.set('staticDir', staticDir);
@@ -46,11 +47,24 @@ const serverFactory = (port, staticDir) => {
 
     server.all('*', routes);
 
-    server.listen(port, () => {
-        console.log(`[${process.env.NODE_ENV}] Server started @ Port ${port}`);
+    let httpServer = http.createServer(server);
+    httpServer.listen(httpPort, () => {
+        console.log(`[${process.env.NODE_ENV}] HTTP Server started @ Port ${httpPort}`);
     });
 
-    return server;
+    let httpsServer = null;
+
+    if (httpsPort && httpsOptions) {
+        httpsServer = https.createServer(httpsOptions, server);
+        httpsServer.listen(httpsPort, () => {
+            console.log(`[${process.env.NODE_ENV}] HTTPS Server started @ Port ${httpsPort}`);
+        });
+    }
+
+    return {
+        http: httpServer,
+        https: httpsServer
+    };
 };
 
 module.exports = serverFactory;

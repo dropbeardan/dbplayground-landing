@@ -4,9 +4,9 @@
   "description": "Static content for landing app of dbplayground.com",
   "main": "index.js",
   "scripts": {
-    "build-test": "cross-env NODE_ENV=test PORT=10100 webpack --config webpack.config.js",
-    "build": "cross-env NODE_ENV=production PORT=10100 webpack --config webpack.config.js",
-    "preview": "cross-env NODE_ENV=dev PORT=8001 webpack-dev-server --hot --colors --config webpack.config.js",
+    "build-test": "cross-env NODE_ENV=test PORT=25000 webpack --config webpack.config.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "preview": "cross-env NODE_ENV=dev PORT=23000 webpack-dev-server --hot --colors --config webpack.config.js",
     "test": "jest"
   },
   "author": "Drop Bear Dan (dan.ess.001@gmail.com)",
