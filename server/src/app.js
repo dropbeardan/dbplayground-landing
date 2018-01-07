@@ -8,10 +8,4 @@ const staticDir = {
     production: path.join(__dirname, '..', 'client')
 };
 
-const appPort = {
-    dev: 10100,
-    test: 10100,
-    production: 10100
-};
-
-const app = server(appPort[process.env.NODE_ENV], staticDir[process.env.NODE_ENV]);
+const app = server(process.env.PORT, staticDir[process.env.NODE_ENV]);

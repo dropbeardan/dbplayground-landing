@@ -7,7 +7,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const buildEnv = process.env.NODE_ENV;
-const previewPort = process.env.PREVIEW_PORT;
+const activePort = process.env.PORT;
 
 const outputDir = path.join(__dirname, '..', 'build', buildEnv, 'client');
 
@@ -31,9 +31,9 @@ const copyAssets = new CopyWebpackPlugin([
 
 const setEnvVars = () => {
     const baseURL = {
-        dev: 'http://localhost:10100',
-        test: 'http://localhost:10100',
-        production: 'https://www.dbplayground.com'
+        dev: `http://localhost:${activePort}`,
+        test: `http://localhost:${activePort}`,
+        production: `https://www.dbplayground.com`
     };
 
     return new webpack.DefinePlugin({
@@ -50,7 +50,7 @@ module.exports = {
         historyApiFallback: true,
         host: 'localhost',
         open: true,
-        port: previewPort
+        port: activePort
     },
     devtool: buildEnv == 'production' ? false : 'source-map',
     entry: ['babel-polyfill', path.join(__dirname, 'src', 'app.js')],

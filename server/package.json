@@ -12,9 +12,9 @@
     "seed": "cross-env NODE_ENV=production sequelize db:seed:all",
     "build-test": "cross-env NODE_ENV=test gulp",
     "build": "cross-env NODE_ENV=production gulp",
-    "preview": "cross-env NODE_ENV=dev node src/app.js",
-    "start-test": "cross-env NODE_ENV=test node app.js",
-    "start": "cross-env NODE_ENV=production node app.js",
+    "preview": "cross-env NODE_ENV=dev PORT=8000 node src/app.js",
+    "start-test": "cross-env NODE_ENV=test PORT=10100 node app.js",
+    "start": "cross-env NODE_ENV=production PORT=10100 node app.js",
     "test": "jest"
   },
   "author": "Drop Bear Dan (dan.ess.001@gmail.com)",
