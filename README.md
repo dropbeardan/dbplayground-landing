@@ -16,7 +16,7 @@ Visit us at https://www.dbplayground.com.
 1. Build the SERVER (Bash: npm run build-test).
 1. Change directory back to the project folder (Bash: cd ..).
 1. Run the app (Bash: npm run start-test).
-1. View the local app at the specified port (default: http://localhost:10100).
+1. View the local app at the specified port (e.g. http://localhost:25000).
 
 ## Active Maintainers
 - Drop Bear Dan (dan.ess.001@gmail.com)
