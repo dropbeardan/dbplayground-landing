@@ -2,7 +2,7 @@ const defaultState = {
     profiles: [
         {
             id: 'dropbeardan',
-            image: 'http://via.placeholder.com/250x350',
+            image: '/images/250x350.png',
             name: 'Daniel Sutisna',
             alias: 'Drop Bear Dan',
             quote: 'Si vis pacem, para bellum.',
