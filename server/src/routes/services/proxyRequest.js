@@ -5,7 +5,7 @@ const routeWrapper = require('../../helpers/routeWrapper');
 const requiredFields = [];
 
 const services = [
-    { name: 'mock-api-server', baseURL: 'http://localhost:10101' }
+    { name: 'mock-api-server', baseURL: 'http://localhost:25001' }
 ];
 
 // Proxy request to Service endpoints if registered.
