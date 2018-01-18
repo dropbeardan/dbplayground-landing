@@ -1,14 +1,17 @@
 const routes = require('express').Router();
 
+const proxyRequest = require('./middlewares/proxyRequest');
+
 const frontEnd = require('./frontEnd');
 const journeys = require('./journeys');
 const resources = require('./resources');
-const services = require('./services');
 const sessions = require('./sessions');
 const stats = require('./stats');
 
+// Check for Proxy Service.
+routes.use(proxyRequest);
+
 // Normal Routes.
-routes.use('/api/:serviceName', services);
 routes.use('/journeys', journeys);
 routes.use('/resources', resources);
 routes.use('/sessions', sessions);
