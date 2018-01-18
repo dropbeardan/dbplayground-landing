@@ -16,7 +16,7 @@ const extractText = new ExtractTextPlugin({
 });
 
 const constructHTML = new HTMLWebpackPlugin({
-    favicon: './src/Assets/icons/favicon.ico',
+    favicon: './src/Assets/resources/favicon.ico',
     inject: 'body',
     title: 'Drop Bear Playground',
     template: './src/index.ejs'
