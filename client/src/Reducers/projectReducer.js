@@ -1,36 +1,31 @@
 const defaultState = {
     projects: [
         {
-            id: 'api-endpoint-factory',
+            id: 'mock-api-server',
             contributors: [
                 'dropbeardan'
             ],
-            title: 'API Endpoint Factory',
-            summary: 'A tool to generate RESTful API endpoints.',
-            image: '/resources/api-icon.jpg',
+            title: 'Mock API Server',
+            summary: 'A tool to generate RESTful API mock endpoints.',
+            image: '/resources/mock-api-server-hero.jpg',
             techIcons: [
                 { title: 'Node JS', src: '/resources/node-black.svg' },
-                { title: 'Express', src: '/resources/express-black.svg' }
+                { title: 'React', src: '/resources/react.svg' }
             ],
-            solution: '/api-factory',
-            details: [
-                {
-                    name: 'Overview',
-                    src: '/api-factory/overview'
-                },
-                {
-                    name: 'Technologies',
-                    src: '/api-factory/technologies'
-                },
-                {
-                    name: 'Approach',
-                    data: '/api-factory/approach'
-                },
-                {
-                    name: 'Retrospective',
-                    data: '/api-factory/retrospective'
-                }
-            ]
+            url: 'https://apiserver.dbplayground.com'
+        }, {
+            id: 'mock-api-server-full',
+            contributors: [
+                'dropbeardan'
+            ],
+            title: 'Mock API Server',
+            summary: 'A tool to generate RESTful API mock endpoints.',
+            image: '/resources/mock-api-server-hero.jpg',
+            techIcons: [
+                { title: 'Node JS', src: '/resources/node-black.svg' },
+                { title: 'React', src: '/resources/react.svg' }
+            ],
+            url: 'https://www.dbplayground.com/api/mock-api-server'
         }
     ]
 };

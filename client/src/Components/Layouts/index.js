@@ -6,4 +6,4 @@ export { Home } from './Home';
 export { Profiles } from './Profiles';
 export { ProfileRecord } from './ProfileRecord';
 export { Projects } from './Projects';
-export { ProjectDetails } from './ProjectDetails';
+export { ProjectPortal } from './ProjectPortal';

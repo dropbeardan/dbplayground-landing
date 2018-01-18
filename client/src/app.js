@@ -10,7 +10,7 @@ import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import store from './store';
 
 // Layouts.
-import { About, App, Blog, Err404, Home, Profiles, ProfileRecord, Projects, ProjectDetails } from './Components/Layouts';
+import { About, App, Blog, Err404, Home, Profiles, ProfileRecord, Projects, ProjectPortal } from './Components/Layouts';
 
 // Browser History.
 const history = syncHistoryWithStore(browserHistory, store);
@@ -34,7 +34,7 @@ ReactDOM.render(
             </Route>
             <Route path='/projects' component={App}>
                 <IndexRoute component={Projects} />
-                <Route path='/projects/:projectId' component={ProjectDetails} />
+                <Route path='/projects/:projectId' component={ProjectPortal} />
             </Route>
             <Route path='*' component={App}>
                 <IndexRoute component={Err404} />
