@@ -24,8 +24,8 @@ const constructHTML = new HTMLWebpackPlugin({
 
 const copyAssets = new CopyWebpackPlugin([
     {
-        from: path.join(__dirname, 'src', 'Assets', 'images'),
-        to: path.join(outputDir, 'images')
+        from: path.join(__dirname, 'src', 'Assets', 'resources'),
+        to: path.join(outputDir, 'resources')
     }
 ]);
 

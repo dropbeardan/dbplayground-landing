@@ -7,10 +7,10 @@ const defaultState = {
             ],
             title: 'API Endpoint Factory',
             summary: 'A tool to generate RESTful API endpoints.',
-            image: '/images/api-icon.jpg',
+            image: '/resources/api-icon.jpg',
             techIcons: [
-                { title: 'Node JS', src: '/images/node-black.svg' },
-                { title: 'Express', src: '/images/express-black.svg' }
+                { title: 'Node JS', src: '/resources/node-black.svg' },
+                { title: 'Express', src: '/resources/express-black.svg' }
             ],
             solution: '/api-factory',
             details: [

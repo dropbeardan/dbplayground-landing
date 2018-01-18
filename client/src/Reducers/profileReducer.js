@@ -2,7 +2,7 @@ const defaultState = {
     profiles: [
         {
             id: 'dropbeardan',
-            image: '/images/250x350.png',
+            image: '/resources/250x350.png',
             name: 'Daniel Sutisna',
             alias: 'Drop Bear Dan',
             quote: 'Si vis pacem, para bellum.',
@@ -26,29 +26,29 @@ const defaultState = {
             likes: 'Food, Sleep, Games, Robots, Puzzles, Anime, Movies and many more',
             dislikes: 'Inequality, Chillies, Inefficiency',
             techIcons: [
-                { title: 'React', src: '/images/react.svg' },
-                { title: 'Node JS', src: '/images/node-black.svg' }
+                { title: 'React', src: '/resources/react.svg' },
+                { title: 'Node JS', src: '/resources/node-black.svg' }
             ],
             technologies: [
                 {
                     title: 'React',
                     url: 'https://reactjs.org/',
-                    src: '/images/react.svg'
+                    src: '/resources/react.svg'
                 },
                 {
                     title: 'Redux',
                     url: 'https://redux.js.org/',
-                    src: '/images/redux.svg'
+                    src: '/resources/redux.svg'
                 },
                 {
                     title: 'Node JS',
                     url: 'https://nodejs.org/',
-                    src: '/images/node-white.svg'
+                    src: '/resources/node-white.svg'
                 },
                 {
                     title: 'Express',
                     url: 'https://expressjs.com/',
-                    src: '/images/express-white.svg'
+                    src: '/resources/express-white.svg'
                 }
             ]
         }
