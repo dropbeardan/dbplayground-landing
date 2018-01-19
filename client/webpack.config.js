@@ -11,7 +11,7 @@ const activePort = process.env.PORT;
 const baseURL = {
     dev: `http://localhost:${activePort}`,
     test: `http://localhost:${activePort}`,
-    production: `https://www.dbplayground.com`
+    production: ``
 };
 
 const outputDir = path.join(__dirname, '..', 'build', buildEnv, 'client');
