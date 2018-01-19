@@ -106,7 +106,7 @@ export default class About extends React.Component {
                                 <p>
                                     They typically prefer to stick to the cover of the sky, revealing themselves only to employ strength when necessary. <br />
                                     As a result, Drop Bears are only witnessed during a show of force.  <br />
-                                    Unfortunately, this has led the development of their less than savoury reputation as as savage monsters.
+                                    Unfortunately, this has led the development of their less than savoury reputation as savage monsters.
                                 </p>
                                 <p>
 
